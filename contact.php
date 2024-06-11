@@ -1,92 +1,74 @@
 <?php
-
 include 'components/connect.php';
 
 session_start();
 
-if(isset($_SESSION['user_id'])){
-   $user_id = $_SESSION['user_id'];
-}else{
-   $user_id = '';
-};
+$user_id = $_SESSION['user_id'] ?? '';
 
-if(isset($_POST['send'])){
+if (isset($_POST['send'])) {
+   $name = filter_var($_POST['name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+   $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+   $number = filter_var($_POST['number'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+   $msg = filter_var($_POST['msg'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-   $name = $_POST['name'];
-   $name = filter_var($name, FILTER_SANITIZE_STRING);
-   $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
-   $number = $_POST['number'];
-   $number = filter_var($number, FILTER_SANITIZE_STRING);
-   $msg = $_POST['msg'];
-   $msg = filter_var($msg, FILTER_SANITIZE_STRING);
+   $select_message = $conn->prepare("SELECT * FROM `messages` WHERE name = :name AND email = :email AND number = :number AND message = :msg");
+   $select_message->execute([
+      ':name' => $name, 
+      ':email' => $email, 
+      ':number' => $number, 
+      ':msg' => $msg
+   ]);
 
-   $select_message = $conn->prepare("SELECT * FROM `messages` WHERE name = ? AND email = ? AND number = ? AND message = ?");
-   $select_message->execute([$name, $email, $number, $msg]);
-
-   if($select_message->rowCount() > 0){
+   if ($select_message->rowCount() > 0) {
       $message[] = 'sudah mengirim pesan!';
-   }else{
-
-      $insert_message = $conn->prepare("INSERT INTO `messages`(user_id, name, email, number, message) VALUES(?,?,?,?,?)");
-      $insert_message->execute([$user_id, $name, $email, $number, $msg]);
-
+   } else {
+      $insert_message = $conn->prepare("INSERT INTO `messages`(user_id, name, email, number, message) VALUES(:user_id , :name , :email , :number , :msg)");
+      $insert_message->execute([
+         ':user_id' => $user_id, 
+         ':name' => $name, 
+         ':email' => $email, 
+         ':number' => $number, 
+         ':msg' => $msg
+      ]);
       $message[] = 'pesan berhasil terkirim!';
-
    }
-
 }
-
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Kontak</title>
-   
+
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-
+   <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 </head>
+
 <body>
-   
-<?php include 'components/user_header.php'; ?>
+   <?php include 'components/user_header.php'; ?>
 
-<section class="contact">
+   <section class="contact">
 
-   <form action="" method="post">
-      <h3>berhubungan</h3>
-      <input type="text" name="name" placeholder="masukkan nama Anda" required maxlength="20" class="box">
-      <input type="email" name="email" placeholder="masukkan email Anda" required maxlength="50" class="box">
-      <input type="number" name="number" min="0" max="9999999999" placeholder="masukkan nomor Anda" required onkeypress="if(this.value.length == 10) return false;" class="box">
-      <textarea name="msg" class="box" placeholder="masukkan pesan Anda" cols="30" rows="10"></textarea>
-      <input type="submit" value="Kirim Pesan" name="send" class="btn">
-   </form>
+      <form action="" method="post">
+         <h3>kontak admin</h3>
+         <input type="text" name="name" placeholder="Masukkan Nama" required maxlength="20" class="box">
+         <input type="email" name="email" placeholder="Masukkan Email" required maxlength="50" class="box">
+         <input type="number" name="number" min="0" max="9999999999" placeholder="Masukkan No Hp" required onkeypress="if(this.value.length == 10) return false;" class="box">
+         <textarea name="msg" class="box" placeholder="Masukkan Pesan" cols="30" rows="10"></textarea>
+         <input type="submit" value="Kirim Pesan" name="send" class="btn">
+      </form>
 
-</section>
+   </section>
 
+   <?php include 'components/footer.php'; ?>
 
-
-
-
-
-
-
-
-
-
-
-
-<?php include 'components/footer.php'; ?>
-
-<script src="js/script.js"></script>
-
+   <script src="js/script.js"></script>
 </body>
 </html>

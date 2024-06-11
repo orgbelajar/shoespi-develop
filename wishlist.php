@@ -39,7 +39,7 @@ if(isset($_GET['delete_all'])){
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 
 </head>
 <body>
@@ -70,7 +70,7 @@ if(isset($_GET['delete_all'])){
       <img src="uploaded_img/<?= $fetch_wishlist['image']; ?>" alt="">
       <div class="name"><?= $fetch_wishlist['name']; ?></div>
       <div class="flex">
-         <div class="price">$<?= $fetch_wishlist['price']; ?>/-</div>
+         <div class="price">IDR <?= number_format($fetch_wishlist['price'], 0, ',', '.'); ?></div>
          <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
       </div>
       <input type="submit" value="Masukkan ke keranjang" class="btn" name="add_to_cart">
@@ -85,8 +85,8 @@ if(isset($_GET['delete_all'])){
    </div>
 
    <div class="wishlist-total">
-      <p>grand total : <span>$<?= $grand_total; ?>/-</span></p>
-      <a href="shop.php" class="option-btn">continue shopping</a>
+      <p>TOTAL : <span>IDR <?= number_format(($grand_total), 0, ',', '.'); ?></span></p>
+      <a href="shop.php" class="option-btn">Lanjutkan Belanja</a>
       <a href="wishlist.php?delete_all" class="delete-btn <?= ($grand_total > 1)?'':'disabled'; ?>" onclick="return confirm('hapus semua dari wishlist?');">hapus semua item</a>
    </div>
 

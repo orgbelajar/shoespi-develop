@@ -27,7 +27,7 @@ if (isset($_SESSION['user_id'])) {
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 
 </head>
 
@@ -54,13 +54,9 @@ if (isset($_SESSION['user_id'])) {
    </section>
 
    <section class="reviews">
-
-      <h1 class="heading">ulasan klien</h1>
-
+      <h1 class="heading">ulasan pembeli</h1>
       <div class="swiper reviews-slider">
-
          <div class="swiper-wrapper">
-
             <div class="swiper-slide slide">
                <img src="images/pic-1.png" alt="">
                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempore distinctio hic, iusto adipisci a rerum nemo perspiciatis fugiat sapiente.</p>
@@ -69,9 +65,9 @@ if (isset($_SESSION['user_id'])) {
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
+                  <i class="fas fa-star"></i>
                </div>
-               <h3>john deo</h3>
+               <h3>Nabil</h3>
             </div>
 
             <div class="swiper-slide slide">
@@ -84,7 +80,7 @@ if (isset($_SESSION['user_id'])) {
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half-alt"></i>
                </div>
-               <h3>john deo</h3>
+               <h3>Ucup</h3>
             </div>
 
             <div class="swiper-slide slide">
@@ -97,63 +93,12 @@ if (isset($_SESSION['user_id'])) {
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half-alt"></i>
                </div>
-               <h3>john deo</h3>
+               <h3>Martin</h3>
             </div>
-
-            <div class="swiper-slide slide">
-               <img src="images/pic-4.png" alt="">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempore distinctio hic, iusto adipisci a rerum nemo perspiciatis fugiat sapiente.</p>
-               <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-               </div>
-               <h3>john deo</h3>
-            </div>
-
-            <div class="swiper-slide slide">
-               <img src="images/pic-5.png" alt="">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempore distinctio hic, iusto adipisci a rerum nemo perspiciatis fugiat sapiente.</p>
-               <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-               </div>
-               <h3>john deo</h3>
-            </div>
-
-            <div class="swiper-slide slide">
-               <img src="images/pic-6.png" alt="">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempore distinctio hic, iusto adipisci a rerum nemo perspiciatis fugiat sapiente.</p>
-               <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-               </div>
-               <h3>john deo</h3>
-            </div>
-
          </div>
-
          <div class="swiper-pagination"></div>
-
       </div>
-
    </section>
-
-
-
-
-
-
-
-
 
    <?php include 'components/footer.php'; ?>
 
@@ -164,7 +109,7 @@ if (isset($_SESSION['user_id'])) {
    <script>
       var swiper = new Swiper(".reviews-slider", {
          loop: true,
-         spaceBetween: 20,
+         spaceBetween: 18,
          pagination: {
             el: ".swiper-pagination",
             clickable: true,

@@ -1,5 +1,4 @@
 <?php
-
 include 'components/connect.php';
 
 session_start();
@@ -25,7 +24,6 @@ if (isset($_SESSION['user_id'])) {
 }
 
 include 'components/wishlist_cart.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -36,26 +34,19 @@ include 'components/wishlist_cart.php';
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>home</title>
-
    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
-
    <?php include 'components/user_header.php'; ?>
 
    <div class="home-bg">
-
       <section class="home">
-
          <div class="swiper home-slider">
-
             <div class="swiper-wrapper">
 
                <div class="swiper-slide slide">
@@ -92,71 +83,64 @@ include 'components/wishlist_cart.php';
                </div>
 
             </div>
-
             <div class="swiper-pagination"></div>
-
          </div>
-
       </section>
-
    </div>
 
    <section class="category">
-
       <h1 class="heading">BERBAGAI SEPATU LOKAL UNGGULAN</h1>
-
       <div class="swiper category-slider">
-
          <div class="swiper-wrapper">
 
-            <a href="category.php?category=laptop" class="swiper-slide slide">
+            <a href="category.php?category=nineteen" class="swiper-slide slide">
                <img src="images/gga.png" alt="">
                <!-- <h3>laptop</h3> -->
             </a>
 
-            <a href="category.php?category=tv" class="swiper-slide slide">
+            <a href="category.php?category=NAH" class="swiper-slide slide">
                <img src="images/ggb.png" alt="">
                <!-- <h3>tv</h3> -->
             </a>
 
-            <a href="category.php?category=camera" class="swiper-slide slide">
+            <a href="category.php?category=aero" class="swiper-slide slide">
                <img src="images/ggc.png" alt="">
                <!-- <h3>camera</h3> -->
             </a>
 
-            <a href="category.php?category=mouse" class="swiper-slide slide">
+            <a href="category.php?category=geoff" class="swiper-slide slide">
                <img src="images/ggd.png" alt="">
                <!-- <h3>mouse</h3> -->
             </a>
 
-            <a href="category.php?category=fridge" class="swiper-slide slide">
+            <a href="category.php?category=ventela" class="swiper-slide slide">
                <img src="images/gge.png" alt="">
                <!-- <h3>fridge</h3> -->
             </a>
 
-            <a href="category.php?category=washing" class="swiper-slide slide">
+            <a href="category.php?category=bumi" class="swiper-slide slide">
                <img src="images/ggf1.png" alt="">
                <!-- <h3>washing machine</h3> -->
             </a>
 
-            <a href="category.php?category=smartphone" class="swiper-slide slide">
+            <a href="category.php?category=league" class="swiper-slide slide">
                <img src="images/ggg1.png" alt="">
                <!-- <h3>smartphone</h3> -->
             </a>
+
+            <a href="category.php?category=" class="swiper-slide slide">
+               <img src="images/ggg1.png" alt="">
+               <!-- <h3>smartphone</h3> -->
+            </a>
+
          </div>
-
          <div class="swiper-pagination"></div>
-
       </div>
-
    </section>
 
    <section class="home-products">
-
       <h1 class="heading">Produk Terbaru</h1>
-
       <div class="swiper products-slider">
-
          <div class="swiper-wrapper">
 
             <?php
@@ -175,8 +159,8 @@ include 'components/wishlist_cart.php';
                      <img src="uploaded_img/<?= $fetch_product['image_01']; ?>" alt="">
                      <div class="name"><?= $fetch_product['name']; ?></div>
                      <div class="flex">
-                        <div class="price"><span>IDR </span><?= $fetch_product['price']; ?><span></span></div>
-                        <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
+                        <div class="price"><span>IDR </span><?= number_format($fetch_product['price'], 0, ',', '.'); ?><span></span></div>
+                        <input type="hidden" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
                      </div>
                      <input type="submit" value="Tambahkan Ke keranjang" class="btn" name="add_to_cart">
                   </form>
@@ -188,17 +172,13 @@ include 'components/wishlist_cart.php';
             ?>
 
          </div>
-
          <div class="swiper-pagination"></div>
-
       </div>
-
    </section>
 
    <?php include 'components/footer.php'; ?>
 
    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
    <script src="js/script.js"></script>
 
    <script>
@@ -237,7 +217,7 @@ include 'components/wishlist_cart.php';
 
       var swiper = new Swiper(".products-slider", {
          loop: true,
-         spaceBetween: 20,
+         spaceBetween: 18,
          pagination: {
             el: ".swiper-pagination",
             clickable: true,

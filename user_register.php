@@ -9,7 +9,7 @@ session_start();
 $user_id = $_SESSION['user_id'] ?? '';
 
 /*
-//* Proses Form Registrasi User
+//* Proses Form Registrasi User Sebelumnya
 if (isset($_POST['submit'])) {
 
    $name = $_POST['name'];
@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
       } else {
          //Simpan User baru ke db
          $hash_password = password_hash($pass, PASSWORD_DEFAULT);
-         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password) VALUES(:name, :email, :password)"); //placholder '?,?,?' for name,email,password 
+         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password) VALUES(:name, :email, :password)");
          $insert_user->execute([
             ':name' => $name,
             ':email' => $email,

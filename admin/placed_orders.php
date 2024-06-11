@@ -94,14 +94,6 @@ if(isset($_GET['delete'])){
 
 
 
-
-
-
-
-
-
-
-
 <script src="../js/admin_script.js"></script>
    
 </body>

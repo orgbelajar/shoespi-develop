@@ -4,9 +4,9 @@ include 'components/connect.php';
 
 session_start();
 
-if(isset($_SESSION['user_id'])){
+if(isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
-}else{
+} else {
    $user_id = '';
 };
 
@@ -71,18 +71,6 @@ include 'components/wishlist_cart.php';
    </div>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'components/footer.php'; ?>
 
